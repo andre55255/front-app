@@ -23,6 +23,8 @@ export const GlobalStyles = createGlobalStyle`
         caret-color: transparent;
         
         font-size: 1rem;
+
+        background-color: ${(props) => props.theme.bodyBgColor};
     }
 
     ::-webkit-scrollbar {
