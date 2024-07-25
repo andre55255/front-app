@@ -19,7 +19,7 @@ const ContainerContentStyled = styled.main<StyledComponentProps>`
 
 type Props = {
     children: React.ReactNode;
-}
+};
 
 export default function LayoutDefaultComponent({ children }: Props) {
     const { theme, toggleTheme } = useContext(ThemeContext);
@@ -29,14 +29,28 @@ export default function LayoutDefaultComponent({ children }: Props) {
             <ContainerHeaderStyled>
                 <LogoComponent />
                 {theme === "light" ? (
-                    <FiMoon size={25} color="#201e50" onClick={toggleTheme} />
+                    <FiMoon
+                        size={25}
+                        color="#201e50"
+                        onClick={toggleTheme}
+                        style={{
+                            backgroundColor: "transparent",
+                            cursor: "pointer",
+                        }}
+                    />
                 ) : (
-                    <FiSun size={25} color="#ccc" onClick={toggleTheme} />
+                    <FiSun
+                        size={25}
+                        color="#ccc"
+                        onClick={toggleTheme}
+                        style={{
+                            backgroundColor: "transparent",
+                            cursor: "pointer",
+                        }}
+                    />
                 )}
             </ContainerHeaderStyled>
-            <ContainerContentStyled>
-                {children}
-            </ContainerContentStyled>
+            <ContainerContentStyled>{children}</ContainerContentStyled>
         </>
     );
 }

@@ -1,4 +1,5 @@
 export type CustomersGetType = {
+    id: number;
     nameOrCorporateReason: string;
     email: string;
     phoneNumber: string;
