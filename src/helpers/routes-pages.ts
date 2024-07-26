@@ -1,3 +1,4 @@
 export const routesPages = {
-    home: "/"
+    home: "/",
+    createUsersStores: "/create-users-stores",
 }

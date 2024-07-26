@@ -21,11 +21,24 @@ export const lightTheme: StyledComponentThemeProps = {
     buttonPaginationbgColor: "#525b76",
     buttonPaginationBgColorHover: "#eee",
     buttonPaginationTxtColor: "#525b76",
+
+    loadingSpinnerColor: "#007bff",
+
+    colorLabelForm: "#201e50",
+    colorValueForm: "#201e50",
+    colorBorderInputForm: "#201e50",
+
+    buttonSubmitBgColor: "#28a745",
+    buttonSubmitBgColorHover: "#218838",
+    buttonSubmitTxtColor: "#f9f9f9",
+
+    switchRadioSelectColor: "#007bff",
+    bgColorDisabledInput: "#e0e0e0",
 };
 
 export const darkTheme: StyledComponentThemeProps = {
     scrollColor: "#201e50",
-    
+
     bodyBgColor: "#1a1a1a",
 
     titlePageTxtColor: "#ccc",
@@ -44,4 +57,17 @@ export const darkTheme: StyledComponentThemeProps = {
     buttonPaginationbgColor: "#eee",
     buttonPaginationBgColorHover: "#4a4a4a",
     buttonPaginationTxtColor: "#eee",
+
+    loadingSpinnerColor: "#0056b3",
+
+    colorLabelForm: "#ccc",
+    colorValueForm: "#ccc",
+    colorBorderInputForm: "#ccc",
+
+    buttonSubmitBgColor: "#28a745",
+    buttonSubmitBgColorHover: "#218838",
+    buttonSubmitTxtColor: "#f9f9f9",
+
+    switchRadioSelectColor: "#4a4a4a",
+    bgColorDisabledInput: "#4a4a4a",
 };

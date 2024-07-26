@@ -23,4 +23,17 @@ export type StyledComponentThemeProps = {
     buttonPaginationbgColor: string;
     buttonPaginationBgColorHover: string
     buttonPaginationTxtColor: string;
+
+    loadingSpinnerColor: string;
+
+    colorLabelForm: string;
+    colorValueForm: string;
+    colorBorderInputForm: string;
+
+    buttonSubmitBgColor: string;
+    buttonSubmitBgColorHover: string;
+    buttonSubmitTxtColor: string;
+
+    switchRadioSelectColor: string;
+    bgColorDisabledInput: string;
 }

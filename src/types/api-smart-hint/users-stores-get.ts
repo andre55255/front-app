@@ -1,4 +1,4 @@
-export type CustomersGetType = {
+export type UsersStoresGetType = {
     id: number;
     nameOrCorporateReason: string;
     email: string;
