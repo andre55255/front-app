@@ -4,6 +4,7 @@ import { RouterProvider } from "react-router-dom";
 import NotFoundPage from "./pages/_not-found";
 import Router from "./routes/router";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function App() {
     return (
@@ -16,7 +17,6 @@ export default function App() {
                 closeOnClick
                 hideProgressBar={false}
                 newestOnTop={false}
-                theme="dark"
             />
             <RouterProvider
                 router={Router}

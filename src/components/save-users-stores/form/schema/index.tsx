@@ -10,9 +10,7 @@ export const formSaveUsersStoresSchema = yup.object({
         .required("Campo obrigatório")
         .max(150, "Pode ter no máximo 150 caracteres")
         .email("Email inválido"),
-    phoneNumber: yup
-        .string()
-        .required("Campo obrigatório"),
+    phoneNumber: yup.string().required("Campo obrigatório"),
     personType: yup.string().required("Campo obrigatório"),
     cpfCnpj: yup.string().required("Campo obrigatório"),
     stateRegistration: yup.string().nullable(),

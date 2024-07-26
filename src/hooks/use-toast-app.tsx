@@ -18,22 +18,27 @@ export function useToastApp() {
     };
 
     async function showToast(type: TypeToast, message: string | undefined) {
-        switch (type) {
-            case "error":
-                toast.error(message, toastOpt);
-                break;
-            case "info":
-                toast.info(message, toastOpt);
-                break;
-            case "success":
-                toast.success(message, toastOpt);
-                break;
-            case "warning":
-                toast.warning(message, toastOpt);
-                break;
-            default:
-                break;
-        }
+        const promise = new Promise((resolve, reject) => {
+            switch (type) {
+                case "error":
+                    toast.error(message, toastOpt);
+                    break;
+                case "info":
+                    toast.info(message, toastOpt);
+                    break;
+                case "success":
+                    toast.success(message, toastOpt);
+                    break;
+                case "warning":
+                    toast.warning(message, toastOpt);
+                    break;
+                default:
+                    break;
+            }
+            resolve("OK");
+        });
+
+        await promise;
     }
 
     return { showToast }

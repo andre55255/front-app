@@ -9,6 +9,7 @@ import FormSaveUsersStoresSectionThreeComponent from "./section-three";
 import FormSaveUsersStoresSectionFourComponent from "./section-four";
 
 type Props = {
+    isStateRegistrationForPFRequest: boolean,
     isLoadingData?: boolean;
     isFetching: boolean;
     handleSubmit: (
@@ -19,6 +20,7 @@ type Props = {
 };
 
 export default function FormSaveUsersStoresComponent({
+    isStateRegistrationForPFRequest,
     isLoadingData,
     isFetching,
     handleSubmit,
@@ -70,6 +72,7 @@ export default function FormSaveUsersStoresComponent({
         touched: formik.touched,
         errors: formik.errors,
         setFieldValue: formik.setFieldValue,
+        isStateRegistrationForPFRequest
     };
 
     return (

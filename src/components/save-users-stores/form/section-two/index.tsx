@@ -31,9 +31,11 @@ type Props = {
         value: any,
         shouldValidate?: boolean
     ) => Promise<FormikErrors<UsersStoresSaveType>> | Promise<void>;
+    isStateRegistrationForPFRequest: boolean;
 };
 
 export default function FormSaveUsersStoresSectionTwoComponent({
+    isStateRegistrationForPFRequest,
     onChange,
     values,
     touched,
@@ -85,41 +87,45 @@ export default function FormSaveUsersStoresSectionTwoComponent({
                     />
                 </FullContainerInputComponent>
             </RowContainerInputComponent>
-            <RowContainerInputComponent>
-                <FullContainerInputComponent>
-                    <InputStateRegistrationComponent
-                        name="stateRegistration"
-                        label="Inscrição Estadual"
-                        value={values.stateRegistration}
-                        placeholder="xxx.xxx.xxx.xxx"
-                        isInvalid={setIsInvalidFormik(
-                            touched.stateRegistration,
-                            errors.stateRegistration
-                        )}
-                        errorMessage={errors.stateRegistration}
-                        onChange={onChange}
-                        disabled={values.isExempt}
-                    />
-                </FullContainerInputComponent>
-            </RowContainerInputComponent>
-            <RowContainerInputComponent>
-                <FullContainerInputComponent>
-                    <InputSwitchComponent
-                        name="isExempt"
-                        label="Isento?"
-                        valueBool={values.isExempt}
-                        onChangeBool={() => {
-                            setFieldValue("stateRegistration", "");
-                            setFieldValue("isExempt", !values.isExempt);
-                        }}
-                        isInvalid={setIsInvalidFormik(
-                            touched.isExempt,
-                            errors.isExempt
-                        )}
-                        errorMessage={errors.isExempt}
-                    />
-                </FullContainerInputComponent>
-            </RowContainerInputComponent>
+            {(values.personType == "J" || isStateRegistrationForPFRequest) && (
+                <>
+                    <RowContainerInputComponent>
+                        <FullContainerInputComponent>
+                            <InputStateRegistrationComponent
+                                name="stateRegistration"
+                                label="Inscrição Estadual"
+                                value={values.stateRegistration}
+                                placeholder="xxx.xxx.xxx.xxx"
+                                isInvalid={setIsInvalidFormik(
+                                    touched.stateRegistration,
+                                    errors.stateRegistration
+                                )}
+                                errorMessage={errors.stateRegistration}
+                                onChange={onChange}
+                                disabled={values.isExempt}
+                            />
+                        </FullContainerInputComponent>
+                    </RowContainerInputComponent>
+                    <RowContainerInputComponent>
+                        <FullContainerInputComponent>
+                            <InputSwitchComponent
+                                name="isExempt"
+                                label="Isento?"
+                                valueBool={values.isExempt}
+                                onChangeBool={() => {
+                                    setFieldValue("stateRegistration", "");
+                                    setFieldValue("isExempt", !values.isExempt);
+                                }}
+                                isInvalid={setIsInvalidFormik(
+                                    touched.isExempt,
+                                    errors.isExempt
+                                )}
+                                errorMessage={errors.isExempt}
+                            />
+                        </FullContainerInputComponent>
+                    </RowContainerInputComponent>
+                </>
+            )}
             {values.personType == "F" && (
                 <>
                     <RowContainerInputComponent>
@@ -144,7 +150,7 @@ export default function FormSaveUsersStoresSectionTwoComponent({
                     </RowContainerInputComponent>
                     <RowContainerInputComponent>
                         <FullContainerInputComponent>
-                            <InputDateComponent 
+                            <InputDateComponent
                                 name="birthDate"
                                 label="Data de nascimento"
                                 value={values.birthDate}

@@ -15,7 +15,7 @@ export const lightTheme: StyledComponentThemeProps = {
     buttonFilterBgColorHover: "#218838",
     buttonFilterTxtColor: "#f9f9f9",
 
-    tableBgColor: "#ccc",
+    tableBgColor: "#eee",
     tableTxtColor: "#201e50",
 
     buttonPaginationbgColor: "#525b76",
@@ -51,7 +51,7 @@ export const darkTheme: StyledComponentThemeProps = {
     buttonFilterBgColorHover: "#28a745",
     buttonFilterTxtColor: "#f9f9f9",
 
-    tableBgColor: "#ccc",
+    tableBgColor: "#4a4a4a",
     tableTxtColor: "#f9f9f9",
 
     buttonPaginationbgColor: "#eee",

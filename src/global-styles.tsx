@@ -7,26 +7,6 @@ export const GlobalStyles = createGlobalStyle`
         src: url(${font});
     }
 
-    * {
-        font-family: "Inter", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        transition: .25s ease-in-out;
-
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-
-        list-style-type: none;
-        list-style: none;
-        text-decoration: none;
-
-        scroll-behavior: smooth;
-        caret-color: transparent;
-        
-        font-size: 1rem;
-
-        background-color: ${(props) => props.theme.bodyBgColor};
-    }
-
     ::-webkit-scrollbar {
         width: 8px;
     }
@@ -38,5 +18,74 @@ export const GlobalStyles = createGlobalStyle`
 
     ::-webkit-scrollbar-track {
         background-color: #F9F9F9;
+    }
+
+    
+    * {
+        font-family: "Inter", 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        transition: .25s ease-in-out;
+        -webkit-text-size-adjust: none;
+    }
+
+    html,
+    body,
+    div,
+    span,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    a,
+    img,
+    ul,
+    ol,
+    li {
+        margin: 0;
+        padding: 0;
+        border: 0;
+    }
+
+    *, *::before, *::after {
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        caret-color: transparent;
+        height: 100%;
+    }
+
+    body {
+        font-size: 1rem;
+        height: 100%;
+        background-color: ${props => props.theme.bodyBgColor};
+    }
+
+    a {
+        text-decoration: none;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    ol {
+        list-style-type: none;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: normal;
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
     }
 `;

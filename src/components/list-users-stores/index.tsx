@@ -4,7 +4,7 @@ import ButtonAddComponent from "../utils/buttons/button-add";
 import ButtonFilterComponent from "../utils/buttons/button-filter";
 import TableDataComponent, { Column } from "../utils/table";
 import { useEffect, useState } from "react";
-import { formatDatePtBr, formatPhoneNumberPtBr } from "../../helpers/methods-helpers";
+import { formatDateTimePtBr, formatPhoneNumberPtBr } from "../../helpers/methods-helpers";
 import { UsersStoresGetType } from "../../types/api-smart-hint/users-stores-get";
 import { useUsersStoresRequest } from "../../services/smart-hint-api/users-stores/get-all";
 import { useToastApp } from "../../hooks/use-toast-app";
@@ -47,7 +47,7 @@ export default function HomeComponent() {
         setIsLoadingData(false);
 
         if (resultReq.status !== "OK") {
-            showToast("error", resultReq.message);
+            await showToast("error", resultReq.message);
             return;
         }
 
@@ -69,7 +69,7 @@ export default function HomeComponent() {
         { titleStr: "Telefone", rowRender: (row) => formatPhoneNumberPtBr(row.phoneNumber) },
         {
             titleStr: "Data de cadastro",
-            rowRender: (row) => formatDatePtBr(row.createdAt),
+            rowRender: (row) => formatDateTimePtBr(row.createdAt),
         },
         {
             titleStr: "Bloqueado",

@@ -1,11 +1,15 @@
 export const constants = {
     localStorageVar: {
-        THEME_APP: "theme-app"
-    }
-}
+        THEME_APP: "theme-app",
+    },
+};
 
 export const endpointsSmartHintApi = {
+    configurations: {
+        isStateRegistrationForPF: "/configuration/is-state-registration-for-pf",
+    },
     usersStores: {
-        getAll: "/user-store"
-    }
-}
+        create: "/user-store",
+        getAll: "/user-store",
+    },
+};

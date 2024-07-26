@@ -36,9 +36,9 @@ const LabelStyled = styled.label<StyledComponentProps>`
     font-size: .8rem;
 `;
 
-const SelectStyled = styled.select`
+const SelectStyled = styled.select<StyledComponentProps>`
     padding: 5px;
-    color: ${props => props.theme.buttonPaginationTxtColor};
+    color: #222;
     font-size: .8rem;
 `;
 
