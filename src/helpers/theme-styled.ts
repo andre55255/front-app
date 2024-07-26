@@ -38,6 +38,10 @@ export const lightTheme: StyledComponentThemeProps = {
     headerDrawerBgColor: "#201e50",
     headerDrawerTxtColor: "#f9f9f9",
     bodyDrawerColor: "#eee",
+
+    buttonDeleteBgColor: "#ff6347",
+    buttonDeleteBgColorHover: "#e55342",
+    buttonDeleteTxtColor: "#f9f9f9",
 };
 
 export const darkTheme: StyledComponentThemeProps = {
@@ -78,4 +82,8 @@ export const darkTheme: StyledComponentThemeProps = {
     headerDrawerBgColor: "#1a1a1a",
     headerDrawerTxtColor: "#f9f9f9",
     bodyDrawerColor: "#2a2a2a",
+
+    buttonDeleteBgColor: "#ff6347",
+    buttonDeleteBgColorHover: "#e55342",
+    buttonDeleteTxtColor: "#f9f9f9",
 };

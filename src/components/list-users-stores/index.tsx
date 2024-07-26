@@ -17,9 +17,14 @@ import { routesPages } from "../../helpers/routes-pages";
 import DrawerComponent from "../utils/drawer";
 import FilterUsersStoresComponent from "./filters";
 import { UsersStoresFilterType } from "../../types/api-smart-hint/users-stores-filter";
-import ButtonResetComponent from "../utils/buttons/button-reset";
 import useGetByFilterUsersStoresRequest from "../../services/smart-hint-api/users-stores/get-by-filter";
-import { FormikHelpers } from "formik";
+import InputSwitchComponent from "../utils/form/inputs/input-switch";
+import { UsersStoresSaveType } from "../../types/api-smart-hint/users-stores-save";
+import useGetByIdUsersStoresRequest from "../../services/smart-hint-api/users-stores/get-by-id";
+import ModalComponent from "../utils/modal";
+import DetailsUsersStoreComponent from "./details";
+import DeleteUsersStoresComponent from "./delete";
+import useDeleteUsersStoresRequest from "../../services/smart-hint-api/users-stores/delete";
 
 const ContainerStyled = styled.div`
     padding: 20px;
@@ -48,6 +53,17 @@ export default function HomeComponent() {
 
     const [isVisibleDrawerFilter, setIsVisibleDrawerFilter] =
         useState<boolean>(false);
+
+    const [isVisibleModalDelete, setIsVisibleModalDelete] = useState<boolean>(false);
+    const [idDelete, setIdDelete] = useState<string>();
+
+    const [isVisibleModalDetails, setIsVisibleModalDetails] =
+        useState<boolean>(false);
+    const [isLoadingDetails, setIsLoadingDetails] = useState<boolean>(false);
+    const [usersStoresDetails, setUsersStoresDetails] = useState<
+        UsersStoresSaveType | undefined
+    >(undefined);
+
     const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
     const [filterUsersStores, setFilterUsersStores] =
         useState<UsersStoresFilterType>();
@@ -56,6 +72,8 @@ export default function HomeComponent() {
         UsersStoresGetType[]
     >([]);
 
+    const { deleteUsersStores } = useDeleteUsersStoresRequest();
+    const { getByIdUsersStores } = useGetByIdUsersStoresRequest();
     const { getByFilterUsersStores } = useGetByFilterUsersStoresRequest();
     const { getUsersStores } = useUsersStoresRequest();
     const { showToast } = useToastApp();
@@ -98,7 +116,13 @@ export default function HomeComponent() {
         {
             titleStr: "Bloqueado",
             rowRender: (row) => (
-                <input type="checkbox" checked={row.isBlocked} disabled />
+                <InputSwitchComponent
+                    type="checkbox"
+                    isInvalid={false}
+                    valueBool={row.isBlocked}
+                    onChangeBool={() => {}}
+                    disabled
+                />
             ),
         },
     ];
@@ -109,12 +133,6 @@ export default function HomeComponent() {
 
     const handleOnClickFilter = () => {
         setIsVisibleDrawerFilter(!isVisibleDrawerFilter);
-    };
-
-    const handleOnClickClearFilters = async () => {
-        setFilterUsersStores({});
-
-        await handleSubmitFilter({});
     };
 
     const handleSubmitFilter = async (values: UsersStoresFilterType) => {
@@ -134,6 +152,38 @@ export default function HomeComponent() {
         }
     };
 
+    const handleGetDetails = async (id: string) => {
+        setIsLoadingDetails(true);
+        setIsVisibleModalDetails(true);
+
+        const result = await getByIdUsersStores(id);
+
+        setIsLoadingDetails(false);
+
+        if (result.status !== "OK") {
+            showToast("error", result.message);
+            return;
+        }
+
+        if (result.object) {
+            setUsersStoresDetails(result.object);
+        }
+    };
+
+    const handleConfirmDelete = async (id: string | undefined) => {
+        setIsLoadingDetails(true);
+        const result = await deleteUsersStores(id);
+        setIsLoadingDetails(false);
+
+        if (result.status !== "OK") {
+            showToast("error", result.message);
+            return;
+        }
+        
+        setIsVisibleModalDelete(false);
+        await findUsersStores();
+    }
+
     return (
         <ContainerStyled>
             <DrawerComponent
@@ -147,8 +197,30 @@ export default function HomeComponent() {
                     filterUsersStores={filterUsersStores}
                 />
             </DrawerComponent>
+            <ModalComponent
+                isOpen={isVisibleModalDetails}
+                onClose={() => setIsVisibleModalDetails(false)}
+                title="Detalhes de comprador"
+            >
+                <DetailsUsersStoreComponent
+                    data={usersStoresDetails}
+                    handleCloseModal={() => setIsVisibleModalDetails(false)}
+                    isLoadingDetails={isLoadingDetails}
+                />
+            </ModalComponent>
+            <ModalComponent
+                isOpen={isVisibleModalDelete}
+                onClose={() => setIsVisibleModalDelete(false)}
+                title="Remover comprador"
+            >
+                <DeleteUsersStoresComponent 
+                    isLoadingData={isLoadingDetails}
+                    onConfirm={handleConfirmDelete}
+                    id={idDelete}
+                />
+            </ModalComponent>
             <HeaderStyled>
-                <TitlePageComponent text="Consulte os seus Clientes cadastrados na sua Loja ou realize o cadastro de novos Clientes" />
+                <TitlePageComponent text="Consulte os seus clientes cadastrados na sua loja ou realize o cadastro de novos clientes" />
                 <ButtonAddComponent
                     title="Adicionar Cliente"
                     onClick={handleOnClickAddCustomer}
@@ -174,6 +246,13 @@ export default function HomeComponent() {
                                     row.id + ""
                                 )
                             );
+                        }}
+                        handleOnPressDetails={(row) => {
+                            handleGetDetails(row.id + "");
+                        }}
+                        handleOnPressDelete={(row) => {
+                            setIdDelete(row.id + "");
+                            setIsVisibleModalDelete(true);
                         }}
                         data={usersStoresGetList}
                         columns={columnsTableData}

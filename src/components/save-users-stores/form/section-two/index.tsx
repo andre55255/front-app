@@ -45,7 +45,7 @@ export default function FormSaveUsersStoresSectionTwoComponent({
     return (
         <>
             <ContainerTitleStyled>
-                <SubTitlePageComponent text="Informações Pessoais" />
+                <SubTitlePageComponent text="Informações pessoais" />
             </ContainerTitleStyled>
             <RowContainerInputComponent>
                 <FullContainerInputComponent>

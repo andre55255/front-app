@@ -10,8 +10,8 @@ const ToggleContainerStyled = styled.label<
     StyledComponentProps & { isEnable: boolean }
 >`
     display: inline-block;
-    width: 54px;
-    height: 28px;
+    width: 46px;
+    height: 20px;
     position: relative;
     background-color: ${(props) =>
         props.isEnable ? props.theme.switchRadioSelectColor : "#ccc"};
@@ -26,8 +26,8 @@ const ToggleButtonStyled = styled.span<
     position: absolute;
     top: 2px;
     left: 2px;
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
     background-color: white;
     border-radius: 50%;
     transition: 0.3s;
@@ -36,7 +36,7 @@ const ToggleButtonStyled = styled.span<
 `;
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-    label: string;
+    label?: string;
     isInvalid: boolean;
     errorMessage?: string;
     valueBool: boolean;
@@ -46,7 +46,10 @@ interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
 export default function InputSwitchComponent(props: Props) {
     return (
         <FormGroupStyled>
-            <LabelStyled htmlFor={props.name}>{props.label}</LabelStyled>
+            {props.label && (
+                <LabelStyled htmlFor={props.name}>{props.label}</LabelStyled>
+            )}
+
             <ToggleContainerStyled
                 isEnable={props.valueBool}
                 onClick={props.onChangeBool}

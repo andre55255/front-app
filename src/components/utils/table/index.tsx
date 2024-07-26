@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import PaginationTableComponent from "./pagination";
 import { StyledComponentProps } from "../../../types/styled-component/styled-component-props";
-import { FiEdit } from "react-icons/fi";
+import { FiEdit, FiInfo, FiTrash } from "react-icons/fi";
+import { ThemeContext } from "../../../providers/theme-provider";
 
 const TableContainerStyled = styled.div<StyledComponentProps>`
     margin-top: 20px;
@@ -27,7 +28,7 @@ const TheadStyled = styled.thead<StyledComponentProps>`
 `;
 
 const ThStyled = styled.th<StyledComponentProps>`
-    padding: 8px;
+    padding: 16px 8px;
     border-bottom: 1px solid ${(props) => props.theme.tableBgColor};
     font-size: 0.9rem;
     text-align: left;
@@ -81,6 +82,8 @@ type TableProps<T> = {
     columns: Column<T>[];
     rowsPerPageOptions?: number[];
     handleOnPressEdit: (row: T) => any;
+    handleOnPressDetails: (row: T) => any;
+    handleOnPressDelete: (row: T) => any;
 };
 
 export default function TableDataComponent<T>({
@@ -90,7 +93,11 @@ export default function TableDataComponent<T>({
     columns,
     rowsPerPageOptions = [20, 40, 50, 100],
     handleOnPressEdit,
+    handleOnPressDetails,
+    handleOnPressDelete,
 }: TableProps<T>) {
+    const { theme } = useContext(ThemeContext);
+
     const [rowsPerPage, setRowsPerPage] = useState<number>(
         rowsPerPageOptions[0]
     );
@@ -169,10 +176,38 @@ export default function TableDataComponent<T>({
                             ))}
                             <TdStyled>
                                 <FiEdit
-                                    color="#0056b3"
+                                    color={
+                                        theme === "light" ? "#0056b3" : "#ccc"
+                                    }
                                     onClick={() => handleOnPressEdit(row)}
+                                    size={18}
                                     style={{
                                         cursor: "pointer",
+                                        transition: "none",
+                                    }}
+                                />
+                                <FiInfo
+                                    color={
+                                        theme === "light" ? "#218838" : "#ccc"
+                                    }
+                                    onClick={() => handleOnPressDetails(row)}
+                                    size={18}
+                                    style={{
+                                        cursor: "pointer",
+                                        marginLeft: "10px",
+                                        transition: "none",
+                                    }}
+                                />
+                                <FiTrash
+                                    color={
+                                        theme === "light" ? "#ff6347" : "#ccc"
+                                    }
+                                    onClick={() => handleOnPressDelete(row)}
+                                    size={18}
+                                    style={{
+                                        cursor: "pointer",
+                                        marginLeft: "10px",
+                                        transition: "none",
                                     }}
                                 />
                             </TdStyled>

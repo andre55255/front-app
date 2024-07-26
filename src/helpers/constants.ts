@@ -11,6 +11,7 @@ export const endpointsSmartHintApi = {
     usersStores: {
         create: "/user-store",
         update: "/user-store",
+        delete: "/user-store",
         getAll: "/user-store",
         getById: "/user-store",
         getByFilter: "/user-store/filter"

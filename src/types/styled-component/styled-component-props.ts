@@ -34,6 +34,10 @@ export type StyledComponentThemeProps = {
     buttonSubmitBgColorHover: string;
     buttonSubmitTxtColor: string;
 
+    buttonDeleteBgColor: string;
+    buttonDeleteBgColorHover: string;
+    buttonDeleteTxtColor: string;
+
     switchRadioSelectColor: string;
     bgColorDisabledInput: string;
 

@@ -12,6 +12,14 @@ export function formatStrToDatePtBr(dateStr: string) {
     }
 }
 
+export function formatStrToDateTimePtBr(dateStr: string) {
+    try {
+        return moment(dateStr).format("DD/MM/YYYY HH:mm");
+    } catch (ex) {
+        return dateStr;
+    }
+}
+
 export function formatDatePtBr(date: Date) {
     return moment(date).format("DD/MM/YYYY");
 }
@@ -72,4 +80,37 @@ export function isValidDatePtBr(dateStr: string) {
     } catch (ex) {
         return false;
     }
+}
+
+export function formatCPF(cpf: string) {
+    cpf = cpf.replace(/\D/g, "");
+
+    if (cpf.length !== 11) {
+        return cpf;
+    }
+
+    return cpf.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, "$1.$2.$3-$4");
+}
+
+export function formatCNPJ(cnpj: string) {
+    cnpj = cnpj.replace(/\D/g, "");
+
+    if (cnpj.length !== 14) {
+        return cnpj;
+    }
+
+    return cnpj.replace(
+        /(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/,
+        "$1.$2.$3/$4-$5"
+    );
+}
+
+export function formatStateRegistration(stateRegistration: string) {
+    stateRegistration = stateRegistration.replace(/[^a-zA-Z0-9]/g, '');
+
+    if (stateRegistration.length < 12) {
+        return stateRegistration;
+    }
+  
+    return stateRegistration.replace(/(.{3})(.{3})(.{3})(.{3})/, '$1.$2.$3.$4');
 }

@@ -1,4 +1,5 @@
 export type UsersStoresSaveType = {
+    id?: string;
     nameOrCorporateReason: string;
     email: string;
     phoneNumber: string;
@@ -11,4 +12,5 @@ export type UsersStoresSaveType = {
     isBlocked: boolean;
     password?: string;
     confirmPassword?: string;
+    createdAt?: Date;
 };

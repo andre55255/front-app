@@ -39,7 +39,7 @@ export default function FormSaveUsersStoresSectionThreeComponent({
     return (
         <>
             <ContainerTitleStyled>
-                <SubTitlePageComponent text="Situação do Cliente" />
+                <SubTitlePageComponent text="Situação do cliente" />
             </ContainerTitleStyled>
             <RowContainerInputComponent>
                 <FullContainerInputComponent>
