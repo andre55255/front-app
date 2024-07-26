@@ -7,6 +7,8 @@ import FormSaveUsersStoresSectionOneComponent from "./section-one";
 import FormSaveUsersStoresSectionTwoComponent from "./section-two";
 import FormSaveUsersStoresSectionThreeComponent from "./section-three";
 import FormSaveUsersStoresSectionFourComponent from "./section-four";
+import { useNavigate } from "react-router-dom";
+import { routesPages } from "../../../helpers/routes-pages";
 
 type Props = {
     isStateRegistrationForPFRequest: boolean,
@@ -26,6 +28,8 @@ export default function FormSaveUsersStoresComponent({
     handleSubmit,
     values,
 }: Props) {
+    const navigate = useNavigate();
+
     const initialValues: UsersStoresSaveType = {
         nameOrCorporateReason: "",
         email: "",
@@ -81,6 +85,8 @@ export default function FormSaveUsersStoresComponent({
             isFetching={isFetching}
             isLoadingData={isLoadingData ?? false}
             title="Compradores"
+            btnSecondaryFormTitle="Voltar a listagem"
+            onClickBtnSecondaryForm={() => navigate(routesPages.home)}
         >
             <FormSaveUsersStoresSectionOneComponent {...propsSteps} />
             <FormSaveUsersStoresSectionTwoComponent {...propsSteps} />

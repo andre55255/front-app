@@ -6,6 +6,10 @@ const ButtonStyled = styled(BaseButtonStyled)`
     color: ${(props) => props.theme.buttonFilterTxtColor};
     background-color: ${(props) => props.theme.buttonFilterBgColor};
 
+    svg {
+        color: aqua
+    }
+
     &:hover {
         background-color: ${(props) => props.theme.buttonFilterBgColorHover};
     }

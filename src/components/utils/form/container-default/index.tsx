@@ -3,10 +3,13 @@ import { StyledComponentProps } from "../../../../types/styled-component/styled-
 import ButtonSubmitComponent from "../button-submit";
 import LoadingSpinnerComponent from "../../loading-spinner";
 import TitlePageComponent from "../../title-page";
+import ButtonOutlineComponent from "../button-outline";
 
-const FormStyled = styled.form<StyledComponentProps>`
+const FormStyled = styled.form<
+    StyledComponentProps & { isNotPadding?: boolean }
+>`
     width: 100%;
-    padding: 0 100px;
+    padding: ${(props) => (props.isNotPadding ? "0" : "0 100px")};
 
     display: flex;
     flex-direction: column;
@@ -27,7 +30,10 @@ type Props = {
     isFetching: boolean;
     isLoadingData: boolean;
     handleSubmit: React.FormEventHandler<HTMLFormElement>;
-    title: string;
+    onClickBtnSecondaryForm?: () => any;
+    btnSecondaryFormTitle?: string;
+    title?: string;
+    isNotPadding?: boolean;
 };
 
 export default function FormContainerDefaultComponent({
@@ -36,11 +42,22 @@ export default function FormContainerDefaultComponent({
     title,
     isLoadingData,
     handleSubmit,
+    onClickBtnSecondaryForm,
+    btnSecondaryFormTitle,
+    isNotPadding,
 }: Props) {
     return (
-        <FormStyled autoComplete="off" onSubmit={handleSubmit}>
-            <TitlePageComponent text={title} />
-            <SeparatorStyled />
+        <FormStyled
+            autoComplete="off"
+            onSubmit={handleSubmit}
+            isNotPadding={isNotPadding}
+        >
+            {title && (
+                <>
+                    <TitlePageComponent text={title} />
+                    <SeparatorStyled />
+                </>
+            )}
             {isLoadingData && <LoadingSpinnerComponent />}
             <SeparatorStyled />
             {children}
@@ -52,6 +69,14 @@ export default function FormContainerDefaultComponent({
                     Enviar
                 </ButtonSubmitComponent>
             )}
+            {btnSecondaryFormTitle &&
+                onClickBtnSecondaryForm &&
+                !isFetching && (
+                    <>
+                        <SeparatorStyled />
+                        <ButtonOutlineComponent onClick={onClickBtnSecondaryForm}>{btnSecondaryFormTitle}</ButtonOutlineComponent>
+                    </>
+                )}
         </FormStyled>
     );
 }

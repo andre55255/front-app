@@ -12,6 +12,7 @@ export const endpointsSmartHintApi = {
         create: "/user-store",
         update: "/user-store",
         getAll: "/user-store",
-        getById: "/user-store"
+        getById: "/user-store",
+        getByFilter: "/user-store/filter"
     },
 };

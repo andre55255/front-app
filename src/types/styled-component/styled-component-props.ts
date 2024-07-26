@@ -36,4 +36,8 @@ export type StyledComponentThemeProps = {
 
     switchRadioSelectColor: string;
     bgColorDisabledInput: string;
+
+    headerDrawerBgColor: string;
+    headerDrawerTxtColor: string;
+    bodyDrawerColor: string;
 }

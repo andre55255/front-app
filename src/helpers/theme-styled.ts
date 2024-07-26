@@ -34,6 +34,10 @@ export const lightTheme: StyledComponentThemeProps = {
 
     switchRadioSelectColor: "#007bff",
     bgColorDisabledInput: "#e0e0e0",
+
+    headerDrawerBgColor: "#201e50",
+    headerDrawerTxtColor: "#f9f9f9",
+    bodyDrawerColor: "#eee",
 };
 
 export const darkTheme: StyledComponentThemeProps = {
@@ -70,4 +74,8 @@ export const darkTheme: StyledComponentThemeProps = {
 
     switchRadioSelectColor: "#4a4a4a",
     bgColorDisabledInput: "#4a4a4a",
+
+    headerDrawerBgColor: "#1a1a1a",
+    headerDrawerTxtColor: "#f9f9f9",
+    bodyDrawerColor: "#2a2a2a",
 };
