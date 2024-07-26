@@ -8,10 +8,11 @@ import { UsersStoresSaveType } from "../../../types/api-smart-hint/users-stores-
 import { DefaultReturnServiceType } from "../../../types/utils/default-return-service";
 import { useRequestClient } from "../_configs/request-client";
 
-export default function useCreateUsersStoresRequest() {
+export default function useEditUsersStoresRequest() {
     const { requestClient } = useRequestClient();
 
-    async function createUsersStores(
+    async function editUsersStores(
+        id: string,
         data: UsersStoresSaveType
     ): Promise<DefaultReturnServiceType<any>> {
         try {
@@ -46,13 +47,13 @@ export default function useCreateUsersStoresRequest() {
             }
 
             const result = await requestClient<any>({
-                url: endpointsSmartHintApi.usersStores.create,
-                method: "POST",
+                url: endpointsSmartHintApi.usersStores.update + "/" + id,
+                method: "PUT",
                 data: parsedDataRequest,
             });
 
             return {
-                status: result.status === 201 ? "OK" : "BAD",
+                status: result.status === 200 ? "OK" : "BAD",
                 message: result.message,
                 object: result.object,
             };
@@ -60,10 +61,10 @@ export default function useCreateUsersStoresRequest() {
             return {
                 status: "BAD",
                 message:
-                    "Ops, não foi possível criar comprador por problemas técnicos. Contate o suporte!",
+                    "Ops, não foi possível editar comprador por problemas técnicos. Contate o suporte!",
             };
         }
     }
 
-    return { createUsersStores };
+    return { editUsersStores };
 }

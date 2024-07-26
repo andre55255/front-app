@@ -106,7 +106,7 @@ export default function HomeComponent() {
                         selectedIndexes={selectedIndexes}
                         setSelectedIndexes={setSelectedIndexes}
                         handleOnPressEdit={(row) => {
-                            console.log(row.id);
+                            navigate(routesPages.editUsersStores.replace(":id", row.id + ""));
                         }}
                         data={usersStoresGetList}
                         columns={columnsTableData}

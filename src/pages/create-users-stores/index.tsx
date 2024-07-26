@@ -1,5 +1,5 @@
-import CreateUsersStoresComponent from "../../components/save-users-stores";
+import SaveUsersStoresComponent from "../../components/save-users-stores";
 
 export default function CreateUsersStoresPage() {
-    return <CreateUsersStoresComponent />
+    return <SaveUsersStoresComponent />
 }

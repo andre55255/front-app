@@ -4,6 +4,14 @@ export function filterByIndexes<T>(data: T[], indexes: number[]) {
     return data.filter((_, index) => indexes.includes(index));
 }
 
+export function formatStrToDatePtBr(dateStr: string) {
+    try {
+        return moment(dateStr).format("DD/MM/YYYY");
+    } catch (ex) {
+        return dateStr;
+    }
+}
+
 export function formatDatePtBr(date: Date) {
     return moment(date).format("DD/MM/YYYY");
 }
