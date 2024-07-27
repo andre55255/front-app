@@ -111,9 +111,7 @@ export default function DetailsUsersStoreComponent({
             {data?.birthDate && (
                 <ContainerItemStyled>
                     <TitleStyled>Data de nascimento:</TitleStyled>
-                    <DataStyled>
-                        {formatStrToDatePtBr(data.birthDate)}
-                    </DataStyled>
+                    <DataStyled>{data.birthDate}</DataStyled>
                 </ContainerItemStyled>
             )}
             <ContainerItemStyled>
