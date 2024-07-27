@@ -1,5 +1,7 @@
 ## Projeto React criado com Vite
 
+### Projeto disponível em https://smart-hint.albarros.com.br
+
 ### Para rodar o projeto:
 - Criar um arquivo .env na raiz do projeto com o seguinte conteúdo:
 ```
